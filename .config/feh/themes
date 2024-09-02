@@ -1,0 +1,6 @@
+~/.config/feh/themes
+
+feh -B black \
+-d \
+--scroll-step 100 \
+--auto-zoom

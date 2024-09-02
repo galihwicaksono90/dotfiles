@@ -1,0 +1,19 @@
+/* --- laserwave ---*/
+#define BLACK #222228
+#define RED #964477
+#define GREEN #448877
+#define YELLOW #FFEE66
+#define BLUE #336a79
+#define MAGENTA #b381c5
+#define CYAN #667788
+#define WHITE #eceff4
+#define BRBLACK #24262d
+#define BRRED #964c7b
+#define BRGREEN #4d8079
+#define BRYELLOW #FFE261
+#define BRBLUE #40b4c4
+#define BRMAGENTA #eb64b9
+#define BRCYAN #b4dce7
+#define BRWHITE #ed60ba
+#define BACKGROUND #27212e
+#define FOREGROUND #EEEEEE

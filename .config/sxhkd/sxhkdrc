@@ -1,0 +1,171 @@
+# wm independent hotkeys
+
+# terminal launcher
+# super + Return
+# 	st
+
+# program launcher
+super + shift + Return
+	dmenu_run -bw 3 -c -l 20 -i
+
+super + space
+	dmenu_run -bw 3 -c -l 20 -i
+
+super + Return
+	alacritty
+
+# make sxhkd reload its configuration files:
+shift + ctrl + alt + Escape
+	betterlockscreen -l dim
+
+# make sxhkd reload its configuration files:
+super + ctrl + Escape
+	pkill -USR1 -x sxhkd && dunstify -u low -r  "656" "Sxhkd reloaded."
+
+super + ctrl + x
+	reloadx && notify-send -u low "Xresources reloaded"
+
+super + alt + q
+	restart_dwm
+
+super + F6
+	dunst_test
+super + F7
+	st -c "alsamixer" -e alsamixer
+super + F8
+	  wallpaper # select wallpaper script
+super + F9
+	mopidy & ; \
+	st -c "ncmpcpp" -e ncmpcpp
+super + ctrl + F9
+	killall -q mopidy && killall -q ncmpcpp && notify-send "Mopidy" "Closed"
+super + F10
+	mpd ; \
+	st -c "ncmpcpp" -e ncmpcpp
+super + ctrl + F10
+	killall -q mpd && killall -q ncmpcpp && notify-send "MPD" "Closed"
+super + F11
+	usb_mount
+super + F12
+	usb_unmount
+XF86Display
+	monitor_dmenu
+
+# launch HTOP
+# ctrl + alt + Delete
+# 	st -c "gotop" -e gotop -l minimal
+# ctrl + alt + Delete
+# 	st -c "btop" -e btop -p 4
+ctrl + alt + Delete
+	st -c "btop" -e btm --basic
+#
+# launch applications
+#
+
+# vivaldi
+# super + v
+# 	vivaldi-stable
+# super + shift + v
+# 	vivaldi-stable --incognito
+#
+
+# 	brave
+# super + v
+# 	brave
+# super + shift + v
+# 	brave --incognito
+#
+
+
+# 	firefox
+super + v
+	launch_firefox
+# super + shift + v
+# 	brave --incognito
+#
+
+# super + g
+# 	qutebrowser
+# super + shift + g
+# 	qutebrowser ":open -p"
+
+# # emacs
+# super + ctrl + d
+# 	emacs
+# super + d
+# 	emacsclient -c -n
+
+# # file manager
+# super + p
+# 	pcmanfm
+
+# volume control suing amixer
+
+# super + bracketright
+# 	volume-control "increase"
+# super + bracketleft
+# 	volume-control "decrease"
+
+XF86MonBrightnessUp
+	light-control "increase"
+XF86MonBrightnessDown
+	light-control "decrease"
+
+# super + ctrl + Prior 
+# 	light-control "increase"
+# super + ctrl + Next
+# 	light-control "decrease"
+
+XF86AudioRaiseVolume
+	volume-control "increase"
+XF86AudioLowerVolume
+	volume-control "decrease"
+
+#
+# XF86BrightnessUp
+	# amixer set Master 10%-
+
+# mpc music control
+XF86AudioStop
+	mpc stop
+XF86AudioPlay
+	mpc toggle
+XF86AudioNext
+	mpc next
+XF86AudioPrev
+	Spacempc prev
+
+# XF86MonBrightnessUp
+	# fish ~/.scripts/brightness_control/./brightness_up.sh 0.1
+# XF86MonBrightnessDown
+	# fish ~/.scripts/brightness_control/./brightness_down.sh 0.1
+
+#
+# screen capture using maim
+#
+
+# take screenshot at ~/Storage/Pictures/Screenshots/
+# take desktop screenshot
+Print
+	screenshot "full"
+ctrl + Print
+	screenshot "active_monitor"
+ctrl + shift + Print
+	screenshot "select"
+
+
+super + ctrl + shift + t
+	change_theme
+
+super + alt + f
+	screenshot "full"
+super + shift + alt + f
+	screenshot "full_clipboard"
+super + alt + a
+	screenshot "active_monitor"
+super + shift + alt + a
+	screenshot "active_monitor_clipboard"
+super + alt + s
+	screenshot "select"
+super + shift + alt + s
+	screnshot "select_clipboard"

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dunstify -u low -r "696969" "Downloading $QUTE_URL"
+yt-dlp -f mp4 -P ~/Videos "$QUTE_URL"
+dunstify -u low -r "696969" "Finished downloading $QUTE_URL"

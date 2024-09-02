@@ -1,0 +1,19 @@
+/* --- ocean-next ---*/
+#define BLACK #14232d
+#define RED #ec5f67
+#define GREEN #99bb66
+#define YELLOW #ecbe7b
+#define BLUE #6699cc
+#define MAGENTA #c678dd
+#define CYAN #44b8b1
+#define WHITE #c0c5ce
+#define BRBLACK #1b2b34
+#define BRRED #f99157
+#define BRGREEN #99c794
+#define BRYELLOW #fac863
+#define BRBLUE #51afef
+#define BRMAGENTA #e2738d
+#define BRCYAN #5fb3b3
+#define BRWHITE #cdd3de
+#define BACKGROUND #1B2B34
+#define FOREGROUND #D8DEE9

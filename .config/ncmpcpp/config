@@ -1,0 +1,47 @@
+[header]
+header_visibility = "no"
+header_window_color = "default"
+volume_color = "green"
+state_line_color = "white"
+
+[playlist]
+playlist_display_mode = "classic"
+song_list_format = "$5%t $R$4%a"
+now_playing_prefix = "$b"
+now_playing_suffix = "$/b"
+browser_playlist_prefix = "$1»$1 "
+
+[statusbar]
+progressbar_look = "━━━"
+progressbar_color = "black"
+statusbar_visibility = "yes"
+progressbar_elapsed_color = "cyan"
+statusbar_color = "3"
+song_status_format = "{%t - %a}"
+#display_bitrate = yes
+
+[library]
+song_library_format = "{{%a - %t}|{%f}}{$R%l}"
+empty_tag_color = "white"
+
+[global]
+main_window_color = "default"
+centered_cursor = "yes"
+enable_window_title = "yes"
+external_editor = "nvim"
+execute_on_song_change = dunstify -r "112" "Now Playing" "$(mpc --format '%title%\n%artist% - %album%' current)"
+# execute_on_song_change = ~/.ncmpcpp/./art.sh
+
+[visualizer]
+visualizer_in_stereo = no
+visualizer_look = "/▊"
+# visualizer_look = ┃█
+visualizer_color = "4"
+visualizer_sync_interval = 30
+visualizer_type = spectrum
+
+# Files and directories
+visualizer_fifo_path = "/tmp/mpd.fifo"
+ncmpcpp_directory = "~/.config/ncmpcpp"
+lyrics_directory = "~/.local/share/lyrics"
+mpd_music_dir = "~/Music"

@@ -1,0 +1,20 @@
+/* --- one+ ---*/
+#define BLACK #1b2229
+#define RED #ff6c6b
+#define GREEN #98be65
+#define YELLOW #ECBE7b
+#define BLUE #2257A0
+#define MAGENTA #a9a1e1
+#define CYAN #5699af
+#define WHITE #DFDFDF
+#define BRBLACK #202328
+#define BRRED #da8548
+#define BRGREEN #4db5db
+#define BRYELLOW #ECBE7B
+#define BRBLUE #51efef
+#define BRMAGENTA #c678dd
+#define BRCYAN #47d9ff
+#define BRWHITE #9ca0a4
+#define BACKGROUND #282c34
+#define FOREGROUND #bbc2cf
+

@@ -1,0 +1,83 @@
+#include "/home/galih/.config/themes/gruvbox-material"
+
+!! Transparency (0-1):
+! *.alpha: 0.9 
+
+!! Set a default font and font size as below:
+#define CODE CaskaydiaCove Nerd Font:size=9
+! #define CODE VictorMono Nerd Font:size=10
+! #define CODE Open Sans Nerd Font:size=9
+
+! #define CODE JetBrains Mono:size=
+! #define CODE VictorMono Nerd Font:size=9
+! #define CODE Fira Code:size=10
+! #define CODE Cascadia Code PL:size=9
+! #define CODE IBM Plex Mono:size=9
+! #define SERIF Roboto Slab Medium:size=9
+#define SANS Open Sans:size=9
+! #define SANS Rubik:size=9
+! #define SANS IBM Plex Sans:size=9
+! #define FONT3 scientifica:size=8
+! #define CODE Source Code Pro:size=11W
+! #define FONT5 JetBrains Mono: size=10
+
+! name      dark        light
+! black     0           8
+! red       1           9
+! green     2           10
+! yellow    3           11
+! blue      4           12
+! purple    4           13
+! cyan      6           14
+! white     7           15
+
+/* --- colors --- */
+*.color0: BLACK
+*.color1: RED 
+*.color2: GREEN
+*.color3: YELLOW
+*.color4: BLUE
+*.color5: MAGENTA
+*.color6: CYAN
+*.color7: WHITE
+*.color8: BRBLACK
+*.color9: BRRED
+*.color10: BRGREEN
+*.color11: BRYELLOW
+*.color12: BRBLUE
+*.color13: BRMAGENTA
+*.color14: BRCYAN
+*.color15: BRWHITE
+*.color256: COLOR256
+*.color257: COLOR257
+*.background: BACKGROUND
+*.foreground: FOREGROUND
+
+*.font: SANS
+
+/* --- Dmenu settings --- */
+dmenu.font : CODE
+dmenu.background : BACKGROUND
+dmenu.foreground : FOREGROUND
+dmenu.selbackground : BLUE
+dmenu.selforeground : BACKGROUND
+
+/* --- Dwm settings --- */
+dwm.normbgcolor: BACKGROUND
+dwm.normbordercolor: BACKGROUND
+dwm.normfgcolor: FOREGROUND
+dwm.selbgcolor: BACKGROUND
+dwm.selbordercolor: BLUE
+dwm.selfgcolor: BRYELLOW
+dwm.showbar: 1
+dwm.topbar: 1
+dwm.font: SANS
+! dwm.borderpx:
+! dwm.snap:
+! dwm.resizehints:
+! dwm.mfact:
+
+/* --- st settings --- */
+st.borderpx: 20
+st.color15: FOREGROUND
+st.font : CODE

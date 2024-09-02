@@ -1,0 +1,19 @@
+/* --- gruvbox --- */
+#define BLACK #282828
+#define RED #cc241d
+#define GREEN #98971a
+#define YELLOW #d79921
+#define BLUE #458588
+#define MAGENTA #b16286
+#define CYAN #689d6a
+#define WHITE #a89984
+#define BRBLACK #928374
+#define BRRED #fb4934
+#define BRGREEN #b8bb26
+#define BRYELLOW #fabd2f
+#define BRBLUE #83a598
+#define BRMAGENTA #d3869b
+#define BRCYAN #8ec07c
+#define BRWHITE #ebdbb2
+#define BACKGROUND #282828
+#define FOREGROUND #ebdbb2

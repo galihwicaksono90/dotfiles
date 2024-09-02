@@ -1,0 +1,44 @@
+#! /bin/sh
+
+sxhkd &
+
+bspc monitor -d I II III IV V VI VII VIII IX X
+# bspc monitor eDP1 -d 1 2 3 4 5
+# bspc monitor VGA-1 -d 6 7 8 9 10
+# bspc monitor VGA-1 -d 6 7 8 9 0
+
+bspc config focused_border_color "#d79921"
+bspc config normal_border_color "#282828"
+bspc config active_border_color "#404040"
+
+bspc config border_width         3
+bspc config window_gap           10
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config single_monocle       true
+
+# bspc config external_rules_command "./~/.config/bspwm/external_rules"
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a Brave-browser desktop='^2' focus=on follow=on
+# bspc rule -a Vivaldi-stable desktop='^2' focus=on follow=on
+# bspc rule -a Emacs focus=on state=tiled
+# bspc rule -a Zathura state=tiled
+# bspc rule -a ncmpcpp desktop='^5' state=floating follow=on
+
+# set background image
+# feh --bg-fill --randomize ~/Storage/Downloads/Wallpapers/
+# feh --bg-fill ~/.local/share/bg/*
+
+# start polybar
+sh /home/tony/.config/polybar/launch.sh
+
+# start picom
+picom &
+
+# start dunst
+/usr/bin/dunst &
+notify-send -c normal " ꦱ ꦩ꧀ꦱ ꦫ​ ꦑꦻ ꦫꦶ​ꦒ ꦫ ꦲ ꦂꦱ ꦪ "
+
+pgrep bspswallow || bspswallow &

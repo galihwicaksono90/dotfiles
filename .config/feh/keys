@@ -1,0 +1,11 @@
+zoom_in k Up
+zoom_out j Down
+
+next_img l Right
+prev_img h Left
+
+scroll_up K
+scroll_down J
+scroll_left H
+scroll_right L
+

@@ -1,0 +1,120 @@
+# Luke's lf settings
+
+# Basic vars
+set ratios "4:5"
+set info size
+set shell zsh
+set shellopts '-eu:--shwordsplit'
+set ifs "\n"
+set filesep "\n"
+set scrolloff 10
+set color256
+set icons
+set period 1
+set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+
+# Vars that depend on environmental variables
+$lf -remote "send $id set previewer ${XDG_CONFIG_HOME:-$HOME/.config}/lf/scope"
+
+# cmds/functions
+cmd open ${{
+	case $(file --mime-type $f -b) in
+		text/*) emacsclient -c -n $f >/dev/null 2>&1 ;;
+		# text/*)  nvim $fx  ;;
+		image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+		image/svg+xml) setsid -f inkscape $f >/dev/null 2>&1 ;;
+		image/*) rifle-sxiv.sh $f ;;
+		# video/*) launch_video $f ;;
+		audio/*) mpv --audio-display=no $fx ;;
+		video/*) mpv $fx -quiet >/dev/null 2>&1 ;;
+		application/pdf|application/epub*)  zathura $f >/dev/null 2>&1 ;;
+		# application/pdf|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+		application/vnd*) setsid -f libreoffice --nologo $fx >/dev/null 2>&1 ;;
+		# *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+	esac
+}}
+
+cmd setbg "$1"
+cmd bulkrename $vidir
+
+
+cmd create %{{
+	echo "Press \"f\" for file or \"d\" for directory: "
+	read -k1 ans
+	case $ans in
+		 "d")
+			echo "Directory Name(s): " && read -A ans && ans=("${(s: :)ans}")
+			for i in $ans[@] ; do 
+				mkdir -p $i && notify-send "Direcory $i created."
+				done ;;
+		 "f")
+			echo "File name(s): " && read -A ans && ans=("${(s: :)ans}")
+			for i in $ans[@]; do 
+				if [ -f "$i" ]; then
+					echo "The file $i exist. Press "y" overwrite?" && read -k1 ans
+						case $ans in
+							[Yy]*) rm -rf $i && touch $i ;;
+							[Nn]*) echo "Cancelled" ;;
+						esac
+				else	
+					touch $i ; 
+					notify-send "File $i created."
+				fi
+			done ;;
+		 *)
+			echo "Cancelled" ;;
+	esac
+}}
+
+# yank path name
+cmd yank-path ${{
+    if [ -n "$fs" ]; then echo "$fs"; else echo "$f" | tr -d '\n'; fi |
+      xclip -i -selection clipboard && notify-send -c low "Directory path yanked" "$f"
+}}
+
+# Archive bindings
+cmd unarchive $ {{
+	case "$f" in
+		 *.zip) unzip "$f" ;;
+		 *.7z) 7z e "$f" ;;
+		 *.tar.gz) tar -xzvf "$f" ;;
+		 *.tar.bz2) tar -xjvf "$f" ;;
+		 *.tar) tar -xvf "$f" ;;
+		 *) notify-send -u critical "Unsupported format" ;;
+	esac
+}}
+
+
+#
+# Bindings
+#
+
+map <c-f> $lf -remote "send $id select '$(fzf)'"
+map gg top
+map D delete
+# map C copyto
+# map M moveto
+map <c-r> reload
+map <enter> shell
+map x $$f
+map X !$f
+map o &mimeopen $f
+map O $mimeopen --ask $f
+map <c-z> unarchive
+map <c-n> create
+map x clear
+
+# Renaming filename
+map A rename # at the very end
+map c push A<c-u> # new rename
+map I push A<c-a> # at the very beginning
+map i push A<a-b><a-b><a-f> # before extention
+map a push A<a-b> # after extention
+map B bulkrename
+map b $setbg $f
+
+# map <c-e> down
+# map <c-a> up
+map V push :!nvim<space>
+
+map <c-s> yank-path

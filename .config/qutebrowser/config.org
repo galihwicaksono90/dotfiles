@@ -1,0 +1,471 @@
+#+TITLE: Qutebrowser config
+#+PROPERTY: header-args :tangle config.py
+#+STARTUP: fold
+#+OPTIONS: toc:nil
+
+* Imports
+#+begin_src python
+import subprocess
+import os
+
+# c.content.headers.user_agent = "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}"
+#+end_src
+* Adblock
+#+begin_src python
+c.content.blocking.adblock.lists = [
+    "https://easylist.to/easylist/easylist.txt",
+    "https://easylist.to/easylist/easyprivacy.txt",
+]
+c.content.blocking.hosts.lists = [
+    "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+]
+c.content.blocking.enabled = True
+#+end_src
+* Color Settings
+** Use Colors from Xresources
+#+begin_src python
+def read_xresources(prefix):
+    """
+    read settings from xresources
+    """
+    props = {}
+    x = subprocess.run(["xrdb", "-query"], stdout=subprocess.PIPE)
+    lines = x.stdout.decode().split("\n")
+    for line in filter(lambda l: l.startswith(prefix), lines):
+        prop, _, value = line.partition(":\t")
+        props[prop] = value
+    return props
+
+xresources = read_xresources("*")
+
+
+#+end_src
+** Color Variables :qutebrowser:
+Uncomment code block to use color theme
+#+begin_src python
+# ============================
+# Color Scheme
+# ============================
+#+end_src
+#+begin_src python
+# black           = '#282828'
+# white           = '#ebdbb2'
+# blue            = '#458588'
+# lightblue       = '#83a598'
+# yellow          = '#d79921'
+# lightyellow     = '#fabd2f'
+# red             = '#cc241d'
+# lightred        = '#fb4934'
+# green           = '#689d6a'
+# lightgreen      = '#b8bb26'
+# magenta         = '#b16286'
+# lightmagenta    = '#d3869b'
+#+end_src
+#+begin_src python
+
+black           = xresources["*.color0"]
+red             = xresources["*.color1"]
+green           = xresources["*.color2"]
+yellow          = xresources["*.color3"]
+blue            = xresources["*.color4"]
+magenta         = xresources["*.color5"]
+cyan            = xresources["*.color6"]
+white           = xresources["*.color7"]
+lightblack      = xresources["*.color8"]
+lightred        = xresources["*.color9"]
+lightgreen      = xresources["*.color10"]
+lightyellow     = xresources["*.color11"]
+lightblue       = xresources["*.color12"]
+lightmagenta    = xresources["*.color13"]
+lightcyan       = xresources["*.color14"]
+lightwhite      = xresources["*.color15"]
+background      = xresources["*.background"]
+foreground      = xresources["*.foreground"]
+#+end_src
+** Colors
+#+begin_src python
+c.colors.completion.category.bg = blue
+c.colors.completion.category.border.bottom = blue
+c.colors.completion.category.border.top = blue
+c.colors.completion.category.fg = foreground
+c.colors.completion.even.bg =  black
+c.colors.completion.fg = [foreground, yellow, foreground]
+c.colors.completion.item.selected.bg = yellow
+c.colors.completion.item.selected.border.bottom = yellow
+c.colors.completion.item.selected.border.top = yellow
+c.colors.completion.item.selected.fg = background
+c.colors.completion.item.selected.match.fg = foreground
+c.colors.completion.match.fg = yellow
+c.colors.completion.odd.bg = black
+c.colors.completion.scrollbar.bg = black
+c.colors.completion.scrollbar.fg = lightwhite
+# c.colors.contextmenu.disabled.bg = None
+# c.colors.contextmenu.disabled.fg = None
+# c.colors.contextmenu.menu.bg = None
+# c.colors.contextmenu.menu.fg = None
+# c.colors.contextmenu.selected.bg = None
+# c.colors.contextmenu.selected.fg = None
+c.colors.downloads.bar.bg = background
+c.colors.downloads.error.bg = red
+c.colors.downloads.error.fg = background
+c.colors.downloads.start.bg = green
+c.colors.downloads.start.fg = background
+c.colors.downloads.stop.bg = blue
+c.colors.downloads.stop.fg = background
+c.colors.downloads.system.bg = 'none'
+c.colors.downloads.system.fg = 'none'
+c.colors.hints.bg = lightyellow
+c.colors.hints.fg = background
+c.colors.hints.match.fg = foreground
+c.colors.keyhint.bg = background
+c.colors.keyhint.fg = foreground
+c.colors.keyhint.suffix.fg = yellow
+c.colors.messages.error.bg = red
+c.colors.messages.error.border = red
+c.colors.messages.error.fg = foreground
+c.colors.messages.info.bg = background
+c.colors.messages.info.border = background
+c.colors.messages.info.fg = foreground
+c.colors.messages.warning.bg = yellow
+c.colors.messages.warning.border = yellow
+c.colors.messages.warning.fg = foreground
+c.colors.prompts.bg = background
+c.colors.prompts.border = background
+c.colors.prompts.fg = foreground
+c.colors.prompts.selected.bg = yellow
+c.colors.statusbar.caret.bg = magenta
+c.colors.statusbar.caret.fg = foreground
+c.colors.statusbar.caret.selection.bg = lightmagenta
+c.colors.statusbar.caret.selection.fg = foreground
+c.colors.statusbar.command.bg = background
+c.colors.statusbar.command.fg = foreground
+c.colors.statusbar.command.private.bg = background
+c.colors.statusbar.command.private.fg = foreground
+c.colors.statusbar.insert.bg = blue
+c.colors.statusbar.insert.fg = white
+c.colors.statusbar.normal.bg = background
+c.colors.statusbar.normal.fg = foreground
+c.colors.statusbar.passthrough.bg = green
+c.colors.statusbar.passthrough.fg = foreground
+c.colors.statusbar.private.bg = background
+c.colors.statusbar.private.fg = yellow
+c.colors.statusbar.progress.bg = foreground
+c.colors.statusbar.url.error.fg = red
+c.colors.statusbar.url.fg = white
+c.colors.statusbar.url.hover.fg = yellow
+c.colors.statusbar.url.success.http.fg = green
+c.colors.statusbar.url.success.https.fg = green
+c.colors.statusbar.url.warn.fg = yellow
+# c.colors.tabs.indicator.system = 'rgb'
+c.colors.tabs.indicator.error = red
+c.colors.tabs.indicator.start = yellow
+c.colors.tabs.indicator.stop = blue
+c.colors.tabs.bar.bg = blue
+c.colors.tabs.even.bg = background
+c.colors.tabs.even.fg = foreground
+c.colors.tabs.odd.bg = background
+c.colors.tabs.odd.fg = foreground
+c.colors.tabs.pinned.even.bg = background
+c.colors.tabs.pinned.even.fg = foreground
+c.colors.tabs.pinned.odd.bg = background
+c.colors.tabs.pinned.odd.fg = foreground
+c.colors.tabs.pinned.selected.even.bg = blue
+c.colors.tabs.pinned.selected.even.fg = foreground
+c.colors.tabs.pinned.selected.odd.bg = blue
+c.colors.tabs.pinned.selected.odd.fg = foreground
+c.colors.tabs.selected.even.bg = blue
+c.colors.tabs.selected.even.fg = foreground
+c.colors.tabs.selected.odd.bg = blue
+c.colors.tabs.selected.odd.fg = foreground
+# c.colors.webpage.bg = white
+# c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
+# c.colors.webpage.darkmode.contrast = 0.0
+#+end_src
+
+* General Settings
+#+begin_src python
+c.messages.timeout = 5000
+c.prompt.radius = 0
+config.load_autoconfig(True)
+c.completion.open_categories = ["quickmarks", "bookmarks", "history"]
+#+end_src
+* Dowloads
+#+begin_src python
+c.downloads.location.directory = "/home/tony/Downloads/"
+# c.downloads.location.suggestion = "/home/tony/Storage/Downloads/"
+c.downloads.position = "bottom"
+# c.editor.command = ["nvim", "-f", "{file}", "-c", "normal {line}G{column0}l"]
+# c.fileselect.handler = "external"
+# c.fileselect.multiple_files.command = ["st", "-e", "lf", "--choosefiles={}"]
+# c.fileselect.single_file.command = ["st", "-e", "lf", "--choosefile={}"]
+#+end_src
+
+#+RESULTS:
+
+# c.downloads.location.prompt = True
+# c.downloads.location.remember = True
+# c.downloads.open_dispatcher = None
+# c.downloads.remove_finished = -1
+* Fonts
+#+begin_src python
+c.fonts.default_family = ["Open Sans"]
+c.fonts.default_size = "10pt"
+c.fonts.hints = "bold 15px IBM Plex Mono"
+#+end_src
+# c.fonts.completion.category = 'bold default_size default_family'
+# c.fonts.completion.entry = 'default_size default_family'
+# c.fonts.contextmenu = None
+# c.fonts.debug_console = 'default_size default_family'
+# c.fonts.downloads = 'default_size default_family'
+# c.fonts.keyhint = 'default_size default_family'
+# c.fonts.messages.error = 'default_size default_family'
+# c.fonts.messages.info = 'default_size default_family'
+# c.fonts.messages.warning = 'default_size default_family'
+# c.fonts.prompts = 'default_size sans-serif'
+# c.fonts.statusbar = 'default_size default_family'
+# c.fonts.tabs.selected = 'default_size default_family'
+# c.fonts.tabs.unselected = 'default_size default_family'
+# c.fonts.web.family.cursive = ''
+# c.fonts.web.family.fantasy = ''
+# c.fonts.web.family.fixed = ''
+# c.fonts.web.family.sans_serif = ''
+# c.fonts.web.family.serif = ''
+# c.fonts.web.family.standard = ''
+# c.fonts.web.size.default = 16
+# c.fonts.web.size.default_fixed = 13
+# c.fonts.web.size.minimum = 0
+# c.fonts.web.size.minimum_logical = 6
+
+* Hints
+#+begin_src python
+c.hints.chars = 'arstneio'
+#+end_src
+# c.hints.auto_follow = 'unique-match'
+# c.hints.auto_follow_timeout = 0
+# c.hints.border = '1px solid #E3BE23'
+# c.hints.chars = 'asdfghjkl'
+# c.hints.dictionary = '/usr/share/dict/words'
+# c.hints.find_implementation = 'python'
+# c.hints.hide_unmatched_rapid_hints = True
+# c.hints.leave_on_load = True
+# c.hints.min_chars = 1
+# c.hints.mode = 'letter'
+# c.hints.next_regexes = ['\\bnext\\b', '\\bmore\\b', '\\bnewer\\b', '\\b[>→≫]\\b', '\\b(>>|»)\\b', '\\bcontinue\\b']
+# c.hints.padding = {'top': 0, 'bottom': 0, 'left': 3, 'right': 3}
+# c.hints.prev_regexes = ['\\bprev(ious)?\\b', '\\bback\\b', '\\bolder\\b', '\\b[<←≪]\\b', '\\b(<<|«)\\b']
+# c.hints.radius = 3
+# c.hints.scatter = True
+# c.hints.selectors = {'all': ['a', 'area', 'textarea', 'select', 'input:not([type="hidden"])', 'button', 'frame', 'iframe', 'img', 'link', 'summary', '[contenteditable]:not([contenteditable="false"])', '[onclick]', '[onmousedown]', '[role="link"]', '[role="option"]', '[role="button"]', '[ng-click]', '[ngClick]', '[data-ng-click]', '[x-ng-click]', '[tabindex]'], 'links': ['a[href]', 'area[href]', 'link[href]', '[role="link"][href]'], 'images': ['img'], 'media': ['audio', 'img', 'video'], 'url': ['[src]', '[href]'], 'inputs': ['input[type="text"]', 'input[type="date"]', 'input[type="datetime-local"]', 'input[type="email"]', 'input[type="month"]', 'input[type="number"]', 'input[type="password"]', 'input[type="search"]', 'input[type="tel"]', 'input[type="time"]', 'input[type="url"]', 'input[type="week"]', 'input:not([type])', '[contenteditable]:not([contenteditable="false"])', 'textarea']}
+# c.hints.uppercase = False
+
+* Input
+#+begin_src python
+c.keyhint.delay = 500
+c.keyhint.radius = 0
+#+end_src
+# c.input.escape_quits_reporter = True
+# c.input.forward_unbound_keys = 'auto'
+# c.input.insert_mode.auto_enter = True
+# c.input.insert_mode.auto_leave = True
+# c.input.insert_mode.auto_load = False
+# c.input.insert_mode.leave_on_load = False
+# c.input.insert_mode.plugins = False
+# c.input.links_included_in_focus_chain = True
+# c.input.mouse.back_forward_buttons = True
+# c.input.mouse.rocker_gestures = False
+# c.input.partial_timeout = 0
+# c.input.spatial_navigation = False
+# c.keyhint.blacklist = []
+
+* Browser
+# c.qt.args = []
+# c.qt.environ = {}
+# c.qt.force_platform = None
+# c.qt.force_platformtheme = None
+# c.qt.force_software_rendering = 'none'
+# c.qt.highdpi = False
+# c.qt.low_end_device_mode = 'auto'
+# c.qt.process_model = 'process-per-site-instance'
+# c.qt.workarounds.remove_service_workers = False
+# c.scrolling.bar = 'overlay'
+# c.scrolling.smooth = False
+# c.search.ignore_case = 'smart'
+# c.search.incremental = True
+# c.search.wrap = True
+# c.session.default_name = None
+# c.session.lazy_restore = False
+# c.spellcheck.languages = []
+* Layout
+#+begin_src python
+c.tabs.title.format = '{audio}{index}: {current_title} {private}'
+#+end_src
+
+# c.statusbar.padding = {'top': 1, 'bottom': 1, 'left': 0, 'right': 0}
+# c.statusbar.position = 'bottom'
+c.statusbar.show = 'never'
+# c.statusbar.widgets = ['keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
+# c.tabs.background = True
+# c.tabs.close_mouse_button = 'middle'
+# c.tabs.close_mouse_button_on_bar = 'new-tab'
+# c.tabs.favicons.scale = 1.0
+# c.tabs.favicons.show = 'always'
+# c.tabs.focus_stack_size = 10
+# c.tabs.indicator.padding = {'top': 2, 'bottom': 2, 'left': 0, 'right': 4}
+# c.tabs.indicator.width = 3
+# c.tabs.last_close = 'ignore'
+# c.tabs.max_width = -1
+# c.tabs.min_width = -1
+# c.tabs.mode_on_change = 'normal'
+# c.tabs.mousewheel_switching = True
+# c.tabs.new_position.related = 'next'
+# c.tabs.new_position.stacking = True
+# c.tabs.new_position.unrelated = 'last'
+# c.tabs.padding = {'top': 0, 'bottom': 0, 'left': 5, 'right': 5}
+# c.tabs.pinned.frozen = True
+# c.tabs.pinned.shrink = True
+# c.tabs.position = 'top'
+# c.tabs.select_on_remove = 'next'
+c.tabs.show = 'never'
+# c.tabs.show_switching_delay = 800
+# c.tabs.tabs_are_windows = False
+# c.tabs.title.alignment = 'left'
+# c.tabs.title.format_pinned = '{index}'
+# c.tabs.tooltips = True
+# c.tabs.undo_stack_size = 100
+# c.tabs.width = '15%'
+# c.tabs.wrap = True
+# c.window.hide_decoration = False
+# c.window.title_format = '{perc}{current_title}{title_sep}qutebrowser'
+# c.window.transparent = False
+# c.zoom.default = '100%'
+# c.zoom.levels = ['25%', '33%', '50%', '67%', '75%', '90%', '100%', '110%', '125%', '150%', '175%', '200%', '250%', '300%', '400%', '500%']
+# c.zoom.mouse_divider = 512
+# c.zoom.text_only = False
+* Search
+#+begin_src python
+c.url.searchengines = {
+    'DEFAULT': 'https://duckduckgo.com/?q={}',
+    'd': 'https://duckduckgo.com/?q={}',
+    'g' : 'https://www.google.com/search?q={}',
+    'y' : 'https://yandex.com/search/?msid=1600227532.21776.97936.549811&text={}&suggest_reqid=189617456160022753274905091117279',
+    'b' : 'https://www.bing.com/search?q={}',
+    'id' : 'https://duckduckgo.com/?q={}&iax=images&ia=images',
+    'ig' : 'https://www.google.com/search?q={}&tbm=isch&ved=2ahUKEwjuhfWY3-zrAhUlJHIKHYLiCLAQ2-cCegQIABAA&oq=texx&gs_lcp=CgNpbWcQAzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzoCCAA6BQgAELEDUO0nWOEvYMg2aABwAHgAgAGHC4gByRSSAQM3LTKYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=2IdhX-65NqXIyAOCxaOACw&safe=strict',
+    'ib' : 'https://www.bing.com/images/search?q={}&form=HDRSC2&first=1&scenario=ImageBasicHover',
+    'iy' : 'https://yandex.com/images/search?text={}&from=tabbar',
+    'yt' : 'https://www.youtube.com/results?search_query={}',
+    'tk' : 'https://www.tokopedia.com/search?st=product&q={}&navsource=home',
+    'ar' : 'https://archlinux.org/packages/?q={}',
+    }
+#+end_src
+# c.url.auto_search = 'naive'
+# c.url.default_page = 'https://start.duckduckgo.com/'
+# c.url.incdec_segments = ['path', 'query']
+# c.url.open_base_url = False
+# c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
+# c.url.start_pages = ['https://start.duckduckgo.com']
+# c.url.yank_ignored_parameters = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+
+* Bindings
+** Normal Mode
+#+begin_src python
+config.bind(';z', 'hint images download')
+config.bind('<Ctrl-Shift-h>', 'tab-move -')
+config.bind('<Ctrl-Shift-l>', 'tab-move +')
+config.bind('j', 'scroll-px 0 75')
+config.bind('k', 'scroll-px 0 -75')
+config.bind('h', 'scroll-px -75 0')
+config.bind('l', 'scroll-px 75 0')
+config.bind('<Ctrl-R>', ':config-source')
+config.bind('<Ctrl-U>', 'undo')
+config.unbind('D')
+config.bind('<Ctrl-Shift-q>', 'tab-close -o')
+config.bind('<Ctrl-j>', 'back')
+config.bind('<Ctrl-h>', 'tab-prev')
+config.bind('<Ctrl-k>', 'forward')
+config.bind('u', 'scroll-page 0 -0.5')
+config.bind('d', 'scroll-page 0 0.5')
+config.bind('<Ctrl-q>', 'tab-close')
+config.bind('<Ctrl-l>', 'tab-next')
+config.bind('<Ctrl-Shift-O>', 'set-cmd-text -s :open -b')
+#+end_src
+** Caret Mode
+** Command Mode
+#+begin_src python
+config.bind('<Ctrl-k>', 'completion-item-focus prev', mode='command')
+config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
+config.bind('<Ctrl-h>', 'completion-item-focus --history prev', mode='command')
+config.bind('<Ctrl-l>', 'completion-item-focus --history next', mode='command')
+#+end_src
+** Hint mode
+** Insert mode
+** Passthrough mode
+#+begin_src python
+config.bind('<Ctrl-Escape>', 'mode-leave', mode='passthrough')
+#+end_src
+** Prompt mode
+** Register mode
+** Yes No Mode
+** Download Related Actions
+#+begin_src python
+config.bind(";V", "spawn mpv {url}")
+config.bind(";v", "hint links spawn mpv {hint-url}")
+config.bind(";a", "hint links spawn st -e mpv {hint-url} --no-video")
+config.bind(
+    "ed",
+    "hint links spawn st -e aria2c --dir=/home/tony/Storage/Downloads '{hint-url}'",
+)
+config.bind(
+    "et",
+    "hint links spawn st -e aria2c --dir=/home/tony/Storage/Downloads/Torrents --seed-time=0 '{hint-url}'",
+)
+# config.bind('ev', 'hint links spawn st -e youtube-dl --config-location ~/.config/youtube-dl/config \'{hint-url}\'')
+config.bind("ev", "hint links userscript download_youtube_video")
+config.bind("ea", "hint links userscript download_youtube_audio")
+config.bind("eV", "hint links userscript download_youtube_video_playlist")
+config.bind("eA", "hint links userscript download_youtube_audio_playlist")
+#+end_src
+** Bindings for readline insert mode
+*** Shortcuts for cursor navigation in insert mode
+#+begin_src python
+config.bind("<Ctrl-h>", "fake-key <BackSpace>", "insert")
+config.bind("<Ctrl-a>", "fake-key <Home>", "insert")
+config.bind("<Ctrl-e>", "fake-key <End>", "insert")
+config.bind("<Ctrl-b>", "fake-key <Left>", "insert")
+config.bind("<Mod1-b>", "fake-key <Ctrl-Left>", "insert")
+config.bind("<Ctrl-f>", "fake-key <Right>", "insert")
+config.bind("<Mod1-f>", "fake-key <Ctrl-Right>", "insert")
+config.bind("<Ctrl-k>", "fake-key <Up>", "insert")
+config.bind("<Ctrl-j>", "fake-key <Down>", "insert")
+config.bind("<Mod1-d>", "fake-key <Ctrl-Delete>", "insert")
+config.bind("<Ctrl-d>", "fake-key <Delete>", "insert")
+config.bind("<Ctrl-w>", "fake-key <Ctrl-Backspace>", "insert")
+config.bind("<Ctrl-u>", "fake-key <Shift-Home><Delete>", "insert")
+config.bind("<Ctrl-l>", "fake-key <Shift-End><Delete>", "insert")
+#+end_src
+*** Read config from source
+#+begin_src python
+config.bind("er", "config-source")
+#+end_src
+** Devtools shortcut
+#+begin_src python
+config.unbind("wl")
+config.bind("wlj", "devtools bottom")
+config.bind("wll", "devtools right")
+config.bind("wlw", "devtools window")
+#+end_src
+
+#+RESULTS:
+
+* Command Aliases
+#+begin_src python
+# c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save', 'wqa': 'quit --save'}
+#+end_src
+## This setting can be used to map keys to other keys. When the key used
+## as dictionary-key is pressed, the binding for the key used as
+## dictionary-value is invoked instead. This is useful for global
+## remappings of keys, for example to map Ctrl-[ to Escape. Note that
+## when a key is bound (via `bindings.default` or `bindings.commands`),
+## the mapping is ignored.
+## Type: Dict
+# c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>', '<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Ctrl-I>': '<Tab>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}

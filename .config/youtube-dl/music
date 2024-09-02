@@ -1,0 +1,4 @@
+# save directory
+-o ~/Music/youtube-dl/%(title)s.%(ext)s
+# -o ~/Storage/Music/youtube-dl/%(title)s.%(ext)s
+-x --audio-format mp3

@@ -1,0 +1,19 @@
+/* --- doom-one-light --- */
+#define BLACK #f0f0f0
+#define RED #e45649
+#define GREEN #50a14f
+#define YELLOW #986801
+#define BLUE #a0bcf8
+#define MAGENTA #a626a4
+#define CYAN #005478
+#define WHITE #1b2229
+#define BRBLACK #e7e7e7
+#define BRRED #da8548
+#define BRGREEN #4db5bd
+#define BRYELLOW #986801
+#define BRBLUE #4078f2
+#define BRMAGENTA #b751b6
+#define BRCYAN #0184bc
+#define BRWHITE #1c1d24
+#define BACKGROUND #fafafa
+#define FOREGROUND #383a42
