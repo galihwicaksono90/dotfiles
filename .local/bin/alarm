@@ -1,0 +1,31 @@
+#!/bin/bash
+
+IFS="\n"
+timer="10s
+1m
+5m
+10m
+30m
+1h
+"
+count=10
+
+
+if time="$(printf $timer | dmenu -l 6 -c -p "Alarm Time: ")"; then
+	if message="$(dmenu -l 6 -c -p "Message: ")"; then
+
+		notify-send "Alarm" "Set for $time" && sleep $time
+
+		while [ $count -gt 0 ]
+		do 
+			dunstify -r  "313" "$message ($count)"
+			sleep 1s
+			let $((count--))
+		done
+	else
+		notify-send -u low "Cancelled"
+	fi
+else
+	notify-send -u low "Cancelled"
+fi
+

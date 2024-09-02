@@ -1,0 +1,13 @@
+#!/bin/sh
+
+drives=$(lsblk -n -i -o name,size,mountpoint | grep -v -e "nvme" -e "sda" | grep  "sd.[0-9]" | sed 's/`-//g;s/|-//g' | awk '$3 != "" {print $1 " : " $2}' )
+# drives=$(lsblk -n -i -o name,size,mountpoint | grep -v -e "nvme" -e "sda" | grep  "sd.[0-9]" | sed 's/`-//g;s/|-//g' )
+
+echo $drives
+
+if [ -z "$drives" ]; then
+   dunstify -u low -r "555" "Disk Unmount" "Nothing To Unmount"
+else
+	mount="$(printf "$drives" | dmenu -i -p "Select To Unmount: " | awk '{print $1}')"
+	udisksctl unmount -b "/dev/$mount" && dunstify -r "555" "Disk Unmount" "$mount Unmounted" || dunstify -u critical -r "555" "Disk Unmount" "Can't Unmount $mount"
+fi

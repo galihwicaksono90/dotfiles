@@ -1,0 +1,7 @@
+#!/bin/bash
+
+current_theme=$HOME/.local/share/theme/current_theme
+[ -r $current_theme ] && theme="$(cat $current_theme)" || theme="gruvbox" 
+echo $theme
+cmd="emacsclient -e '(counsel-load-theme-action \"doom-$theme\")'>/dev/null 2>&1"
+# eval $cmd

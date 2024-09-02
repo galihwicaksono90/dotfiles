@@ -1,0 +1,17 @@
+#!/bin/bash
+
+file="$HOME/.config/XResources"
+dir=$HOME/.config/themes
+if theme=$(ls $dir | tr " " "\n" | dmenu -l 10 -c -p "Choose Theme: "); then
+
+    echo $theme > $HOME/.local/share/theme/current_theme
+
+    sed -i 1d $file && 
+    echo "#include \"/home/tony/.config/themes/$theme\"" | cat - $file > temp.txt && 
+    mv temp.txt $file && 
+    xrdb "$file" &&
+    killall dwm &&
+    doom-change-theme &&
+    launch_dunst &&
+    notify-send -u normal "Switched Theme To" "$theme" 
+fi

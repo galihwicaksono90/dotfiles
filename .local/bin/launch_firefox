@@ -1,0 +1,13 @@
+#!/bin/bash
+
+options="Work\nPersonal\nGuest\nIncognito"
+
+case "$( echo -e $options | dmenu -bw 3 -c -l 20 -i -p "Profiles: ")" in
+  "Work") firefox -P Work ;;
+  "Personal") firefox -P Personal ;;
+  "Guest") firefox -P Guest ;;
+  "Incognito") firefox --private-window -P Guest ;;
+  *) exit 1;;
+esac
+
+

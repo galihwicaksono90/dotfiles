@@ -1,0 +1,11 @@
+#!/bin/bash
+
+drives=$(lsblk -n -i -o name,size,mountpoint | grep -v -e "nvme" -e "sda" | grep  "sd.[0-9]" | sed 's/`-//g;s/|-//g' | awk ' $3 == "" {print $1" : " $2}' )
+
+echo $drives
+if [ -z "$drives" ]; then
+   dunstify -u low -r "444"  "Disk Mount" "Nothing To Mount"
+else
+	mount="$(printf "$drives" | dmenu -i -p "Select To mount: " | awk '{print $1}')"
+	udisksctl mount -b "/dev/$mount" && dunstify -u normal -a "mount" -r "444" "Disk Mount" "$mount Mounted" || dunstify -u critical -r "444" "Disk Mount" "Can't Mount $mount"
+fi

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+msgId="100"
+
+case $1 in
+    "next-song")
+        mpc next && dunstify -a "nextSong" -r "$msgId" "Next Song" "$(mpc current)"
+        ;;
+    "prev-song")
+        mpc prev && dunstify -i low -a "prevSong" -r "$msgId" "Previous Song" "$(mpc current)"
+        ;;
+    "toggle")
+        mpc toggle
+        ;;
+    "stop")
+        mpc stop && dunstify -i low -a "prevSong" -r "99" "Music Stopped" 
+esac

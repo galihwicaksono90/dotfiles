@@ -1,0 +1,12 @@
+#!/bin/bash
+function get_x_color {
+	echo "$(xrdb -q | grep "$1" | cut -f2 )"
+}
+
+low="color15"
+normal="color11"
+critical="color9"
+background="background"
+
+killall dunst &&
+dunst -lf "$(get_x_color $low)" -nf "$(get_x_color $normal)" -cf "$(get_x_color $critical)" -lb "$(get_x_color $background)" -lfr "$(get_x_color $normal)" -nfr "$(get_x_color $normal)" -cfr "$(get_x_color $normal)"  >/dev/null 2>&1

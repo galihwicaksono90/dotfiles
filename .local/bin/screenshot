@@ -1,0 +1,15 @@
+#!/bin/bash
+
+img_dir=$HOME/Pictures/Screenshots/
+delay=0
+
+case $1 in
+    "full") flameshot full -p "$img_dir/d_$(date '+%Y%m%d-%H%M%S').png" ;;
+    "full_clipboard") flameshot full -c ;;
+    "active_monitor") flameshot screen -r -p "$img_dir/d_$(date '+%Y%m%d-%H%M%S').png" ;;
+    "active_monitor_clipboard") flameshot screen -r -c ;;
+    "select") flameshot gui -p "$img_dir/s_$(date '+%Y%m%d-%H%M%S').png" ;;
+    "select_clipboard") flameshot gui -c
+esac
+
+

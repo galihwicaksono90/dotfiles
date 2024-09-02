@@ -1,0 +1,16 @@
+#!/bin/bash
+
+img_dir=$HOME/Pictures/Screenshots/
+delay=0
+
+case $1 in
+    1) maim "$img_dir/d_$(date '+%Y%m%d-%H:%M:%S').png" &&
+	   notify-send -u normal "Desktop screenshot taken." "$img_dir" ;;
+    2) maim -d $delay -i $(xdotool getactivewindow) "$img_dir/w_$(date '+%Y%m%d-%H%M%S').png" &&
+	   notify-send -u normal "Window screenshot taken." "$img_dir" ;;
+    3) maim -d $delay -s "$img_dir/s_$(date '+%Y%m%d-%H%M%S').png" ; notify-send 
+	   notify-send -u normal "Selected screenshot taken." "$img_dir" ;;
+    4) maim -s "$img_dir/x_$(date '+%Y%m%d-%H%M%S').png" ; notify-send 
+	   notify-send -u normal "Delayed screenshot taken." "$img_dir" ;;
+esac
+

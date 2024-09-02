@@ -1,0 +1,27 @@
+#!/bin/bash
+
+IFS="/n"
+main_monitor="eDP-1"
+
+if connected="$(xrandr --verbose | grep " connected" | grep -v -e VGA-1-2 -e $main_monitor | awk '{print $1}' )"; then
+	if [ -n "$connected" ]; then
+		monitor="$( echo -e $connected | dmenu -i -p "Select monitor to add/remove: ")" 
+		action="$(printf "auto\\nduplicate\\noff" | dmenu -i -p "Action: ")"
+		case $action in
+			"auto")
+				placement="$(printf "right\\nleft" | dmenu -i -p "Placement: ")"
+				xrandr --output "$connected" --"$placement"-of "$main_monitor" --auto 
+				;;
+			"duplicate")
+				xrandr --output "$connected" --auto 
+				;;
+			"off")
+				xrandr --output "$connected" --off 
+				;;
+		esac
+	else
+		notify-send "No External Monitor Available"
+	fi
+else
+	notify-send "Cancelled"
+fi

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+gatsby=$1
+if [ -z "$gatsby" ] 
+   then
+    echo 'Please enter target gatsby app!' 
+else
+    if [ ! -d $HOME/Documents/gatsby/$gatsby ]
+    then
+        echo "There is no react app named $gatsby!"
+    else
+        cd "$HOME/Documents/gatsby/$gatsby"
+        gatsby develop
+    fi
+# npm start
+fi
+
+

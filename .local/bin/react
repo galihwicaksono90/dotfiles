@@ -1,0 +1,16 @@
+#!/bin/bash
+
+react=$1
+if [ -z "$react" ] 
+   then
+    echo 'Please enter target react app!' 
+else
+    if [ ! -d $HOME/Documents/react/$react ]
+    then
+        echo "There is no react app named $react!"
+    else
+        cd "$HOME/Documents/react/$react"
+        npm start 
+    fi
+# npm start
+fi

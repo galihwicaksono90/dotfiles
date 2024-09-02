@@ -1,0 +1,28 @@
+#!/bin/bash
+
+IFS="/n"
+main_monitor="LVDS-1"
+
+connected="$(xrandr --verbose | grep " connected" | grep -v -e VGA-1-2 -e $main_monitor | awk '{print $1}' )"
+
+# [ -n "$connected" ] && echo "oke" || echo "not"
+
+
+if [ -n "$connected" ]; then
+	monitor="$( echo -e $connected | dmenu -i -p "Which monitor to add: ")" 
+	action="$(printf "auto\\nduplicate\\noff" | dmenu -i -p "Action: ")"
+	case $action in
+		"auto")
+			placement="$(printf "right\\nleft" | dmenu -i -p "Placement: ")"
+			xrandr --output "$connected" --"$placement"-of "$main_monitor" --auto 
+			;;
+		"duplicate")
+			xrandr --output "$connected" --auto 
+			;;
+		"off")
+			xrandr --output "$connected" --off 
+			;;
+	esac
+else
+	notify-send "No available monitor"
+fi

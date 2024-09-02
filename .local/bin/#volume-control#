@@ -1,0 +1,17 @@
+#!/bin/bash
+
+msgId="312"
+
+case $1 in 
+	"increase")
+		amixer -c 1 -q set Master 5%+
+		;;
+	"decrease")
+		amixer -c 1 -q set Master 5%-
+		;;
+esac
+
+# msg=amixer sget Master | grep 'Mono:' | awk -F'[][]' '{ print $2 }'
+
+dunstify -u low -a "changeVolume" -r "$msgId" "Volume: $(amixer -c 1 sget Master | grep 'Mono:' | awk -F'[][]' '{ print $2 }'
+)"

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+acpi -b | grep "Battery 1" | awk -F'[,:%]' '{print $2, $3}' | {
+	read -r status capacity
+
+	if [ "$capacity" -lt 5 ]; then
+		dunstify -u critical -r "98" "Please recharge."
+	fi
+
+	# if [ "$status" = Discharging -a "$capacity" -lt 5 ]; then
+	# 	logger "Critical battery threshold"
+	# fi
+
+}

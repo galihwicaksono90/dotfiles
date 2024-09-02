@@ -1,0 +1,14 @@
+#!/bin/bash
+
+msgId="311"
+
+case $1 in 
+	"increase")
+		sudo light -A 10 
+		dunstify -u low -a "changeBrightness" -r "$msgId" "Brightness: $(sudo light -G)"
+		;;
+	"decrease")
+		sudo light -U 10 
+		dunstify -u low -a "changeBrightness" -r "$msgId" "Brightness: $(sudo light -G)"
+		;;
+esac

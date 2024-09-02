@@ -1,0 +1,24 @@
+#!/bin/bash
+
+msgId="312"
+
+case $1 in 
+	"increase")
+		amixer set Master 5%+
+		;;
+	"decrease")
+		amixer set Master 5%-
+		;;
+esac
+
+# case $1 in 
+# 	"increase")
+# 		amixer -c 1 -q set Master 5%+
+# 		;;
+# 	"decrease")
+# 		amixer -c 1 -q set Master 5%-
+# 		;;
+# esac
+
+dunstify -u low -a "changeVolume" -r "$msgId" "Volume: $(amixer sget Master | tail -1 | awk '{print $5 }' | sed 's@\\(\\[\\|\\]\\)@@g')"
+
