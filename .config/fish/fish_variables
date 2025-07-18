@@ -2,7 +2,7 @@
 # VERSION: 3.0
 SETUVAR --export ANDROID_SDK_ROOT:/opt/android\x2dsdk
 SETUVAR --export JAVA_HOME:\x1d
-SETUVAR --export PYENV_ROOT:/home/galih/\x2epyenv
+SETUVAR --export PYENV_ROOT:/home/ss/\x2epyenv
 SETUVAR SXHKD_SHELL:/usr/bin/bash
 SETUVAR __fish_initialized:3400
 SETUVAR _fish_abbr_aqua:asciiquarium
@@ -47,4 +47,4 @@ SETUVAR fish_pager_color_completion:blue
 SETUVAR fish_pager_color_description:magenta
 SETUVAR fish_pager_color_prefix:yellow
 SETUVAR fish_pager_color_progress:cyan
-SETUVAR fish_user_paths:/home/galih/\x2epyenv/bin\x1e/home/tony/Documents/go/bin\x1e/home/tony/\x2edotnet/tools\x1e/opt/flutter\x1e/opt/flutter/bin\x1e/usr/sbin\x1e/opt/android\x2dsdk/cmdline\x2dtools/latest/bin
+SETUVAR fish_user_paths:/home/ss/\x2epyenv/bin\x1e/home/galih/\x2epyenv/bin\x1e/home/tony/Documents/go/bin\x1e/home/tony/\x2edotnet/tools\x1e/opt/flutter\x1e/opt/flutter/bin\x1e/usr/sbin\x1e/opt/android\x2dsdk/cmdline\x2dtools/latest/bin

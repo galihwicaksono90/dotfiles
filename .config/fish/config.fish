@@ -6,6 +6,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.config/emacs/bin"
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 export GOPATH="$HOME/Documents/go"
+export PATH="$PATH:$HOME/Documents/go/bin"
 export NVM_DIR="$HOME/.config/nvm"
 export ANDROID_HOME="/opt/android-sdk"
 export MsBuildSDKsPath="/usr/share/dotnet/sdk/6.*/Sdks"
@@ -77,3 +78,5 @@ pyenv init - | source
 
 # set -x NVM_DIR ~/.nvm
 # nvm use default --silent
+
+starship init fish | source

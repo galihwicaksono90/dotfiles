@@ -1,0 +1,19 @@
+/* --- kanagawa dragon --- */
+#define BACKGROUND #181616
+#define FOREGROUND #c5c9c5
+#define BLACK #0d0c0c
+#define RED #c4746e
+#define GREEN #8a9a7b
+#define YELLOW #c4b28a
+#define BLUE #8ba4b0
+#define MAGENTA #a292a3
+#define CYAN #8ea4a2
+#define WHITE #c8c093
+#define BRBLACK #a6a69c
+#define BRRED #e46876
+#define BRGREEN #87a987
+#define BRYELLOW #e6c384
+#define BRBLUE #7fb4ca
+#define BRMAGENTA #938aa9
+#define BRCYAN #7aa89f
+#define BRWHITE #c5c9c5
