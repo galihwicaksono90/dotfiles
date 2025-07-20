@@ -3,19 +3,13 @@ export EDITOR=nvim
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/.config/emacs/bin"
-export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 export GOPATH="$HOME/Documents/go"
 export PATH="$PATH:$HOME/Documents/go/bin"
-export NVM_DIR="$HOME/.config/nvm"
-export ANDROID_HOME="/opt/android-sdk"
-export MsBuildSDKsPath="/usr/share/dotnet/sdk/6.*/Sdks"
-export MsBuildSDKsPath="/usr/share/dotnet/sdk/6.*/Sdks"
-export JAVA_HOME="/usr/lib/jvm/default-runtime/"
-# set PATH $PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-# set PATH $PATH:$ANDROID_HOME/tools/bin export 
 
-set -gx NVM_DIR $HOME/.config/nvm
+set -Ux PYENV_ROOT $HOME/.pyenv
+set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+
+# set -gx NVM_DIR $HOME/.config/nvm
 set fish_cursor_default block
 set fish_cursor_insert line
 set fish_cursor_replace_one underscore
@@ -68,15 +62,6 @@ abbr tkss tmux kill-session -t
 
 abbr lg lazygit
 
-pyenv init - | source
-
-# bass source ~/.config/nvm/nvm.sh
-
-# function nvm
-#   bass source ~/.config/nvm/nvm.sh --no-use ';' nvm $argv
-# end
-
-# set -x NVM_DIR ~/.nvm
-# nvm use default --silent
+# pyenv init - fish | source
 
 starship init fish | source

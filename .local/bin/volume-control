@@ -2,23 +2,23 @@
 
 msgId="312"
 
-case $1 in 
-	"increase")
-		amixer set Master 5%+
-		;;
-	"decrease")
-		amixer set Master 5%-
-		;;
-esac
-
 # case $1 in 
 # 	"increase")
-# 		amixer -c 1 -q set Master 5%+
+# 		amixer set Master 5%+
 # 		;;
 # 	"decrease")
-# 		amixer -c 1 -q set Master 5%-
+# 		amixer set Master 5%-
 # 		;;
 # esac
 
-dunstify -u low -a "changeVolume" -r "$msgId" "Volume: $(amixer sget Master | tail -1 | awk '{print $5 }' | sed 's@\\(\\[\\|\\]\\)@@g')"
+case $1 in 
+	"increase")
+		wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+		;;
+	"decrease")
+		wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+		;;
+esac
 
+# dunstify -u low -a "changeVolume" -r "$msgId" "Volume: $(amixer sget Master | tail -1 | awk '{print $5 }' | sed 's@\\(\\[\\|\\]\\)@@g')"
+dunstify -u low -a "changeVolume" -r "$msgId" "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ printf "%s %.0f%%\n", $1 "", $2 * 100 }')"

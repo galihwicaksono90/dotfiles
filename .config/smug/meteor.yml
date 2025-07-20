@@ -1,0 +1,18 @@
+session: Meteor
+
+root: ~/Documents/forage
+
+windows:
+  - name: Neovim
+    root: .
+    layout: main-vertical
+    commands: 
+      - fnm use 20
+      - nvim .
+
+  - name: Meteor
+    root: .
+    commands: 
+      - fnm use 18
+      - pyenv shell 2.7.18
+      - meteor npm run start
