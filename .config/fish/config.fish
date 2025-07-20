@@ -60,8 +60,12 @@ abbr tl tmux list-session
 abbr tksv tmux kill-server
 abbr tkss tmux kill-session -t
 
+abbr ls "ls -lhN --color=auto --group-directories-first"
+abbr la "ls -lahN --color=auto --group-directories-first"
+abbr grep "grep --color=auto"
+
 abbr lg lazygit
 
-# pyenv init - fish | source
+pyenv init - fish | source
 
 starship init fish | source
