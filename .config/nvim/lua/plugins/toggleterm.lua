@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 return {
   'akinsho/toggleterm.nvim',
   event = 'BufEnter',
@@ -23,9 +27,11 @@ return {
       end,
     }
 
-    vim.keymap.set('n', '<leader>gg', function()
+    function _lazygit_toggle()
       lazygit:toggle()
-    end, { silent = true, desc = 'LazyGit' })
+    end
+
+    vim.api.nvim_set_keymap('n', '<leader>g', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true })
 
     require('toggleterm').setup()
   end,

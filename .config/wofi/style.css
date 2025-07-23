@@ -17,6 +17,7 @@ window {
   padding: 0;
   border: none;
   background-color: @base;
+  overflow: hidden;
 }
 
 #outer-box {
@@ -25,7 +26,8 @@ window {
   border: none;
   background-color: @base;
   border: 2px solid @border;
-  border-radius: 8px;
+  /* border-radius: 8px; */
+  overflow: hidden;
 }
 
 #scroll {
