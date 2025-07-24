@@ -11,15 +11,15 @@ TERM = "alacritty-direct"
 size = 9.0
 
 [font.normal]
-family = "CaskaydiaCove Nerd Font"
+family = "BlexMono Nerd Font"
 style = "Regular"
 
 [font.bold]
-family = "CaskaydiaCove Nerd Font"
+family = "BlexMono Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "CaskaydiaCove Nerd Font"
+family = "BlexMono Nerd Font"
 style = "Italic"
 
 [font.glyph_offset]

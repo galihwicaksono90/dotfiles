@@ -15,7 +15,7 @@ local colors = {
   magenta = "#d3869b",
   violet = "#d3869b",
   cyan = "#89b482",
-  bg = "#282828",
+  bg = "#32302f",
   fg =  "#ddc7a1"
 }
 
@@ -134,6 +134,7 @@ ins_left {
   -- filesize component
   'filesize',
   cond = conditions.buffer_not_empty,
+
 }
 
 ins_left {
@@ -180,7 +181,8 @@ ins_left {
 ins_left {
   -- Lsp server name .
   function()
-    local msg = 'No Active Lsp'
+    -- local msg = 'No Active Lsp'
+    local msg = ''
     local buf_ft = vim.api.nvim_get_option_value('filetype', { buf = 0 })
     local clients = vim.lsp.get_clients()
     if next(clients) == nil then
@@ -195,7 +197,7 @@ ins_left {
     return msg
   end,
   icon = '  ',
-  color = { fg = '#ffffff' },
+  color = { fg = colors.fg },
 }
 
 -- Add components to right sections
