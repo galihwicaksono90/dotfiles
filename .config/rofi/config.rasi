@@ -1,8 +1,12 @@
 configuration {
+    modi: "drun,run,combi,calc";
+    icon-theme: "GruvboxPlus-Dark";
+    // drun-display-format: "{icon} {name} ";
+    drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
     display-ssh:    "";
     display-run:    "";
     display-drun:   " ";
-    display-window: "";
+    display-calc: " ";
     display-combi:  "";
     show-icons:     true;
     font: "CaskaydiaCove Nerd Font 10";
