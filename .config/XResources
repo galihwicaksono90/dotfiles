@@ -67,7 +67,7 @@ dwm.normbgcolor: BACKGROUND
 dwm.normbordercolor: BACKGROUND
 dwm.normfgcolor: FOREGROUND
 dwm.selbgcolor: BACKGROUND
-dwm.selbordercolor: BLUE
+dwm.selbordercolor: WHITE
 dwm.selfgcolor: BRYELLOW
 dwm.showbar: 1
 dwm.topbar: 1

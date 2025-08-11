@@ -1,15 +1,17 @@
 #!/bin/bash
 
-img_dir=$HOME/Pictures/Screenshots/
+img_dir=$HOME/Pictures/Screenshots
 delay=0
 
 case $1 in
-    "full") flameshot full -p "$img_dir/d_$(date '+%Y%m%d-%H%M%S').png" ;;
-    "full_clipboard") flameshot full -c ;;
-    "active_monitor") flameshot screen -r -p "$img_dir/d_$(date '+%Y%m%d-%H%M%S').png" ;;
-    "active_monitor_clipboard") flameshot screen -r -c ;;
-    "select") flameshot gui -p "$img_dir/s_$(date '+%Y%m%d-%H%M%S').png" ;;
-    "select_clipboard") flameshot gui -c
+    "select") maim -s ~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png && notify-send "Screenshot" "Saved to ~/Pictures/Screenshots 📸" || notify-send "Screenshot" "Screenshot cancelled ❌" ;;
+    "select_clipboard") maim -s | xclip -selection clipboard -t image/png && notify-send "Maim" "Screenshot copied to clipboard" ;;
+    # "full") flameshot full -p "$img_dir/d_$(date '+%Y%m%d-%H%M%S').png" ;;
+    # "full_clipboard") flameshot full -c ;;
+    # "active_monitor") flameshot screen -r -p "$img_dir/d_$(date '+%Y%m%d-%H%M%S').png" ;;
+    # "active_monitor_clipboard") flameshot screen -r -c ;;
+    # "select") flameshot gui -p "$img_dir/s_$(date '+%Y%m%d-%H%M%S').png" ;;
+    # "select_clipboard") flameshot gui -c
 esac
 
 

@@ -5,10 +5,8 @@ SETUVAR --export JAVA_HOME:\x1d
 SETUVAR --export PYENV_ROOT:/home/galih/\x2epyenv
 SETUVAR SXHKD_SHELL:/usr/bin/bash
 SETUVAR __fish_initialized:3800
-SETUVAR _fish_abbr_aqua:asciiquarium
 SETUVAR _fish_abbr_cow:echo\x20samsara\x20\x7c\x20cowsay\x20\x7c\x20lolcat
 SETUVAR _fish_abbr_docs:lf\x20/home/tony/Storage/Documents
-SETUVAR _fish_abbr_fish:asciiquarium
 SETUVAR _fish_abbr_horse:figlet\x20Samsara\x20\x7c\x20ponysay
 SETUVAR _fish_abbr_lfm:lf\x20\x7e/Storage/Masters
 SETUVAR _fish_abbr_pg:ping\x201\x2e1\x2e1\x2e1

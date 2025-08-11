@@ -20,7 +20,7 @@ sensitive_x11_atoms = ["x-kde-passwordManagerHint"]
 filter_text_min_length = 1
 filter_text_max_length = 20000000
 denied_text_regex_patterns = []
-capture_image = true
+capture_image = false
 filter_image_max_size = 5242880
 
 [grpc]

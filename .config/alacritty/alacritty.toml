@@ -6,9 +6,10 @@ draw_bold_text_with_bright_colors = false
 
 [env]
 TERM = "alacritty-direct"
+WINIT_X11_SCALE_FACTOR = "1.66"
 
 [font]
-size = 9.0
+size = 5.0
 
 [font.normal]
 family = "CaskaydiaCove Nerd Font"

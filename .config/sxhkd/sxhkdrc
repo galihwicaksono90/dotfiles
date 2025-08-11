@@ -6,10 +6,22 @@
 
 # program launcher
 super + shift + Return
-	dmenu_run -bw 3 -c -l 20 -i
+	# dmenu_run -bw 3 -c -l 20 -i
 
 super + space
-	dmenu_run -bw 3 -c -l 20 -i
+	rofi -show drun
+	# dmenu_run -bw 3 -c -l 20-i
+	#
+
+super + shift + space
+	rofi -show run
+
+super + alt + space
+	rofi -show calc
+
+super + v
+	clipcat-menu
+	# dmenu_run -bw 3 -c -l 20 -i
 
 super + Return
 	alacritty
@@ -51,63 +63,8 @@ super + F12
 XF86Display
 	monitor_dmenu
 
-# launch HTOP
-# ctrl + alt + Delete
-# 	st -c "gotop" -e gotop -l minimal
-# ctrl + alt + Delete
-# 	st -c "btop" -e btop -p 4
-ctrl + alt + Delete
-	st -c "btop" -e btm --basic
-#
-# launch applications
-#
-
-# vivaldi
-# super + v
-# 	vivaldi-stable
-# super + shift + v
-# 	vivaldi-stable --incognito
-#
-
-# 	brave
-# super + v
-# 	brave
-# super + shift + v
-# 	brave --incognito
-#
-
-
-# 	firefox
-super + v
-	launch_firefox
-# super + shift + v
-# 	brave --incognito
-#
-
-# super + g
-# 	qutebrowser
-# super + shift + g
-# 	qutebrowser ":open -p"
-
-# # emacs
-# super + ctrl + d
-# 	emacs
-# super + d
-# 	emacsclient -c -n
-
-# # file manager
-# super + p
-# 	pcmanfm
-
-# volume control suing amixer
-
-# super + bracketright
-# 	volume-control "increase"
-# super + bracketleft
-# 	volume-control "decrease"
-
 XF86MonBrightnessUp
-	light-control "increase"
+	brightnessctl -e4 -n2 set 5%+
 XF86MonBrightnessDown
 	light-control "decrease"
 
@@ -121,19 +78,17 @@ XF86AudioRaiseVolume
 XF86AudioLowerVolume
 	volume-control "decrease"
 
-#
-# XF86BrightnessUp
-	# amixer set Master 10%-
-
-# mpc music control
+# playerctl music control
 XF86AudioStop
-	mpc stop
+	playerctl stop
 XF86AudioPlay
-	mpc toggle
+	playerctl play-pause
 XF86AudioNext
-	mpc next
+	playerctl next
 XF86AudioPrev
-	Spacempc prev
+	playerctl previous
+XF86AudioPause
+	playerctl play-pause
 
 # XF86MonBrightnessUp
 	# fish ~/.scripts/brightness_control/./brightness_up.sh 0.1
@@ -146,26 +101,13 @@ XF86AudioPrev
 
 # take screenshot at ~/Storage/Pictures/Screenshots/
 # take desktop screenshot
+# Print
+# 	screenshot "full"
 Print
-	screenshot "full"
+	screenshot "select_clipboard"
 ctrl + Print
-	screenshot "active_monitor"
-ctrl + shift + Print
 	screenshot "select"
 
 
 super + ctrl + shift + t
 	change_theme
-
-super + alt + f
-	screenshot "full"
-super + shift + alt + f
-	screenshot "full_clipboard"
-super + alt + a
-	screenshot "active_monitor"
-super + shift + alt + a
-	screenshot "active_monitor_clipboard"
-super + alt + s
-	screenshot "select"
-super + shift + alt + s
-	screnshot "select_clipboard"

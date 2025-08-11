@@ -3,47 +3,8 @@
 # Launch neovim
 alias v="nvim"
 
-# # lf aliases 
-# alias scripts="lfcd ~/.local/bin"
-# alias lf="lf"
-# alias lfdown="lf ~/Downloads"
-# alias lfc="lf ~/.config/"
-# alias lfs="lf ~/Storage/"
-# alias lftor="lf ~/Storage/Downloads/Torrents/"
-# alias lfd="lf ~/Documents/"
-# alias lfdoc="lf ~/Storage/Documents/"
-# alias yamaha="lf ~/Storage/Documents/Yamaha/"
-# alias lfx="lf /run/media/tony/"
-# alias lfmtp="lf ~/.mtp/"
-# alias suckless="lfcd ~/Storage/Masters/Suckless/"
-
-# # emacs aliases
-# alias todos="emacsclient -n -c ~/Documents/org/todos.org"
-
-# # mount usb
-# alias usbmount="udisksctl mount -b /dev/sdc1"
-# alias usbunmount="udisksctl unmount -b /dev/sdc1"
-
-# # mount phone mtp
-# alias mtpmount="jmtpfs ~/mtp"
-# alias mtpunmount="fusermount -u ~/.mtp"
-
-# # click on point to get RGB value
-# alias getrgb="maim -st 0 | convert - -resize 1x1! -format '%[pixel:p{0,0}]' info:-"
-
-# # start factorio
-# alias factorio="sh ~/Storage/Games/Factorio/Factorio/run.sh"
-# # start Slay The Spire
-# alias slay="sh ~/Storage/Games/Slay\ the\ Spire/run.sh"
-
 # change random wallpaper
 alias wallpaper="sxiv ~/Pictures/Wallpapers/*"
-
-
-# # Colorize commands if possible
-# alias ls="ls -hN --color=auto --group-directories-first"
-# alias la="ls -ahN --color=auto --group-directories-first"
-# alias grep="grep --color=auto"
 
 # verbose commands
 alias cp="cp -iv"
