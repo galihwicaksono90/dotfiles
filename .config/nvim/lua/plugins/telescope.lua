@@ -109,16 +109,19 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>fF', function()
       require('telescope.builtin').find_files { hidden = true, no_ignore = true }
     end, { desc = 'All Hidden Files' })
-    vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = 'Select Telescope' })
-    vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'by Grep' })
+    vim.keymap.set('n', '<leader>fb', builtin.builtin, { desc = 'Select Telescope' })
+    vim.keymap.set('n', '<leader>fs', builtin.grep_string, { desc = 'by Grep' })
     vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Diagnostics' })
-    vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'Resume' })
+    vim.keymap.set('n', '<leader>f.', builtin.resume, { desc = 'Resume' })
+    vim.keymap.set('n', '<leader>fr', function()
+      require('telescope.builtin').lsp_references { fname_width = 100 }
+    end, { desc = 'References' })
     vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = 'Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', function()
       builtin.buffers { sorting_mru = true }
     end, { desc = 'Find existing buffers' })
 
-    vim.keymap.set('n', '<leader>f.', function()
+    vim.keymap.set('n', '<leader>f/', function()
       builtin.current_buffer_fuzzy_find(require('telescope.themes').get_ivy {
         winblend = 0,
         previewer = false,
@@ -144,6 +147,5 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>fn', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
     end, { desc = 'Neovim files' })
-
   end,
 }

@@ -1,6 +1,5 @@
 return {
   'tpope/vim-dadbod',
-  lazy = true,
   cmd = { 'DB', 'DBUI', 'DBUIToggle', 'DBUIFindBuffer', 'DBUIAddConnection' },
   dependencies = {
     {
@@ -16,7 +15,7 @@ return {
       lazy = true,
     },
   },
-  config = function()
-    require('config.dadbod').setup()
-  end,
+  -- config = function()
+  --   require('config.dadbod').setup()
+  -- end,
 }
