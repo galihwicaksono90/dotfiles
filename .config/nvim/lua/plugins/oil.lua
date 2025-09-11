@@ -12,7 +12,7 @@ return {
     require('oil').setup {
       vim.keymap.set('n', '<leader>e', '<Cmd>Oil<CR>', { desc = 'Oil Nvim' }),
       keymaps = {
-        ['<C-v>'] = { 'actions.select', opts = { vertical = true } },
+        -- ['<C-v>'] = { 'actions.select', opts = { vertical = true } },
         ['<C-r>'] = 'actions.refresh',
         ['<C-h>'] = false,
         ['<C-l>'] = false,

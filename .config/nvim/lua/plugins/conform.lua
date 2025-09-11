@@ -36,6 +36,7 @@ return { -- Autoformat
       typescriptreact = { 'eslint_d' },
       svelte = { 'eslint_d' },
       vue = { 'eslint_d' },
+      -- astro = { 'prettierd' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
