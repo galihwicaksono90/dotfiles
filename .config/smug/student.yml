@@ -7,19 +7,19 @@ windows:
     root: .
     layout: main-vertical
     commands: 
-      - fnm use 20
+      - fnm use 22
       - nvim .
 
   - name: Student
     root: .
     commands: 
-      - fnm use 18
+      - fnm use 20
       - pyenv shell 2.7.18
       - npm run dev -w apps/student
     panes:
       - type: horizontal
         root: .
         commands:
-        - fnm use 18
+        - fnm use 20
         - pyenv shell 2.7.18
         - npm run dev -w apps/api

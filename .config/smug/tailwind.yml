@@ -1,6 +1,6 @@
-session: Meteor
+session: Tailwind
 
-root: ~/Documents/forage
+root: ~/Documents/forage-mono-tailwind
 
 windows:
   - name: Neovim
@@ -10,9 +10,8 @@ windows:
       - fnm use 22
       - nvim .
 
-  - name: Meteor
+  - name: Tailwind
     root: .
     commands: 
-      - fnm use 18
-      - pyenv shell 2.7.18
-      - meteor npm run start
+      - fnm use 20
+      - npm run storybook -w libs/ui

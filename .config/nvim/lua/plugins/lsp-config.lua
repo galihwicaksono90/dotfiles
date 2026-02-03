@@ -236,19 +236,19 @@ return {
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
     local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
-    local vue_plugin = {
-      name = '@vue/typescript-plugin',
-      location = vue_language_server_path,
-      languages = { 'vue' },
-      configNamespace = 'typescript',
-    }
+    -- local vue_plugin = {
+    --   name = '@vue/typescript-plugin',
+    --   location = vue_language_server_path,
+    --   languages = { 'vue' },
+    --   configNamespace = 'typescript',
+    -- }
     local vtsls_config = {
       settings = {
         vtsls = {
           tsserver = {
-            globalPlugins = {
-              vue_plugin,
-            },
+            -- globalPlugins = {
+            --   vue_plugin,
+            -- },
           },
         },
       },
@@ -265,9 +265,9 @@ return {
 
     local vue_ls_config = {}
     vim.lsp.config('vtsls', vtsls_config)
-    vim.lsp.config('vue_ls', vue_ls_config)
+    -- vim.lsp.config('vue_ls', vue_ls_config)
     -- vim.lsp.config('ts_ls', ts_ls_config)
-    vim.lsp.enable { 'vtsls', 'vue_ls' }
+    -- vim.lsp.enable { 'vtsls', 'vue_ls' }
     -- vim.lsp.enable { 'ts_ls', 'vue_ls' }
     local servers = {
       -- clangd = {},
@@ -283,8 +283,7 @@ return {
       -- ts_ls = {},
       --
       --
-      vtsls = vtsls_config,
-      vue_ls = vue_ls_config,
+      -- vue_ls = vue_ls_config,
       -- ts_ls = ts_ls_config,
 
       lua_ls = {
@@ -301,6 +300,28 @@ return {
           },
         },
       },
+      -- vtsls = vtsls_config,
+      tsgo = function()
+        -- Load the custom tsgo config defined in lua/lsp/tsgo.lua
+        require('lspconfig').tsgo.setup {
+          cmd = { 'tsgo', '--lsp', '--stdio' },
+          filetypes = {
+            'javascript',
+            'javascriptreact',
+            'javascript.jsx',
+            'typescript',
+            'typescriptreact',
+            'typescript.tsx',
+          },
+          root_markers = {
+            'tsconfig.json',
+            'jsconfig.json',
+            'package.json',
+            '.git',
+            'tsconfig.base.json',
+          },
+        }
+      end,
     }
 
     -- Ensure the servers and tools above are installed
