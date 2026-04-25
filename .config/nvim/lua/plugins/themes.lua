@@ -49,7 +49,7 @@
 return {
   'sainnhe/gruvbox-material',
   init = function()
-    vim.g.gruvbox_material_transparent_background = 0
+    vim.g.gruvbox_material_transparent_background = 1
     vim.g.gruvbox_material_enable_italic = 1
     -- vim.g.gruvbox_material_dim_inactive_windows = 1
   end,
@@ -59,3 +59,11 @@ return {
 }
 
 -- return { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
+
+-- return {
+--   'f4z3r/gruvbox-material.nvim',
+--   name = 'gruvbox-material',
+--   lazy = false,
+--   priority = 1000,
+--   opts = {},
+-- }

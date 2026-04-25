@@ -1,5 +1,4 @@
 return {
-  -- Main LSP Configuration
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -234,26 +233,45 @@ return {
     --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-    local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
-    local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+-- <<<<<<< Updated upstream
+--     local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
+--     local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+-- =======
+    -- local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
+    local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' }
     -- local vue_plugin = {
     --   name = '@vue/typescript-plugin',
     --   location = vue_language_server_path,
     --   languages = { 'vue' },
     --   configNamespace = 'typescript',
     -- }
-    local vtsls_config = {
-      settings = {
-        vtsls = {
-          tsserver = {
-            -- globalPlugins = {
-            --   vue_plugin,
-            -- },
-          },
-        },
-      },
-      filetypes = tsserver_filetypes,
-    }
+-- <<<<<<< Updated upstream
+--     local vtsls_config = {
+--       settings = {
+--         vtsls = {
+--           tsserver = {
+--             -- globalPlugins = {
+--             --   vue_plugin,
+--             -- },
+--           },
+--         },
+--       },
+--       filetypes = tsserver_filetypes,
+--     }
+-- =======
+    -- local vtsls_config = {
+    --   -- settings = {
+    --   --   vtsls = {
+    --   --     tsserver = {
+    --   --       -- globalPlugins = {
+    --   --       --   -- vue_plugin,
+    --   --       -- },
+    --   --     },
+    --   --   },
+    --   -- },
+    --   filetypes = tsserver_filetypes,
+    -- }
+-- >>>>>>> Stashed changes
     -- local ts_ls_config = {
     --   init_options = {
     --     plugins = {
@@ -262,13 +280,40 @@ return {
     --   },
     --   filetypes = tsserver_filetypes,
     -- }
+    local tsgo_config = {
+      cmd = { 'tsgo', '--lsp', '--stdio' },
+      filetypes = {
+        'javascript',
+        'javascriptreact',
+        'javascript.jsx',
+        'typescript',
+        'typescriptreact',
+        'typescript.tsx',
+      },
+      root_markers = {
+        'tsconfig.json',
+        'jsconfig.json',
+        'package.json',
+        '.git',
+        'tsconfig.base.json',
+      },
+    }
 
-    local vue_ls_config = {}
-    vim.lsp.config('vtsls', vtsls_config)
+-- <<<<<<< Updated upstream
+--     local vue_ls_config = {}
+--     vim.lsp.config('vtsls', vtsls_config)
+--     -- vim.lsp.config('vue_ls', vue_ls_config)
+--     -- vim.lsp.config('ts_ls', ts_ls_config)
+--     -- vim.lsp.enable { 'vtsls', 'vue_ls' }
+--     -- vim.lsp.enable { 'ts_ls', 'vue_ls' }
+-- =======
+    -- local vue_ls_config = {}
+    -- vim.lsp.config('vtsls', vtsls_config)
     -- vim.lsp.config('vue_ls', vue_ls_config)
     -- vim.lsp.config('ts_ls', ts_ls_config)
     -- vim.lsp.enable { 'vtsls', 'vue_ls' }
-    -- vim.lsp.enable { 'ts_ls', 'vue_ls' }
+    vim.lsp.config('tsgo', tsgo_config)
+    vim.lsp.enable { 'tsgo' }
     local servers = {
       -- clangd = {},
       -- gopls = {},
@@ -283,6 +328,7 @@ return {
       -- ts_ls = {},
       --
       --
+      -- vtsls = vtsls_config,
       -- vue_ls = vue_ls_config,
       -- ts_ls = ts_ls_config,
 

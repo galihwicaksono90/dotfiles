@@ -25,7 +25,7 @@ return {
     vim.keymap.set('n', '<leader>ma', function()
       require('harpoon'):list():add()
     end, { desc = 'Harpoon add file' })
-    vim.keymap.set('n', '<leader>ml', '<Cmd>Telescope harpoon marks<CR>', { desc = 'Show marks in Telescope' })
+    vim.keymap.set('n', '<leader>mf', '<Cmd>Telescope harpoon marks<CR>', { desc = 'Show marks in Telescope' })
     -- vim.keymap.set('n', '<leader>mt', function()
     --   vim.ui.input({ prompt = term_string .. ' window number: ' }, function(input)
     --     local num = tonumber(input)

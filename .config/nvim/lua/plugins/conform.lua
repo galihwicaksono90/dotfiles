@@ -13,6 +13,16 @@ return { -- Autoformat
     },
   },
   opts = {
+    eslint_d = {
+      command = 'eslint_d',
+      args = {
+        '--fix',
+        '--stdin',
+        '--stdin-filename',
+        '$FILENAME',
+      },
+      stdin = true,
+    },
     notify_on_error = true,
     -- format_on_save = function(bufnr)
     --   -- Disable "format_on_save lsp_fallback" for languages that don't
@@ -30,13 +40,30 @@ return { -- Autoformat
     -- end,
     formatters_by_ft = {
       lua = { 'stylua' },
-      javascript = { 'eslint_d' },
-      typescript = { 'eslint_d' },
-      javascriptreact = { 'eslint_d' },
-      typescriptreact = { 'eslint_d' },
+
+      -- javascript = { 'eslint_d' },
+      -- typescript = { 'eslint_d' },
+      -- javascriptreact = { 'eslint_d' },
+      -- typescriptreact = { 'eslint_d' },
+
+      -- javascript = { 'biome', "biome-organize-imports" },
+      -- typescript = { 'biome', "biome-organize-imports" },
+      -- javascriptreact = { 'biome', "biome-organize-imports" },
+      -- typescriptreact = { 'biome', "biome-organize-imports" },
+
+      javascript = { 'biome', "biome-organize-imports" },
+      typescript = { 'biome', "biome-organize-imports" },
+      javascriptreact = { 'biome', "biome-organize-imports" },
+      typescriptreact = { 'biome', "biome-organize-imports" },
+
+
+      -- javascript = { 'prettierd', 'eslint_d', stop_after_first = true },
+      -- typescript = { 'prettierd', 'eslint_d', stop_after_first = true },
+      -- javascriptreact = { 'prettierd', 'eslint_d', stop_after_first = true },
+      -- typescriptreact = { 'prettierd', 'eslint_d', stop_after_first = true },
+
       svelte = { 'eslint_d' },
-      vue = { 'eslint_d' },
-      -- astro = { 'prettierd' },
+      astro = { 'prettierd' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
